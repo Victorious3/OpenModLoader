@@ -1,7 +1,6 @@
 package xyz.openmodloader.registry;
 
 import xyz.openmodloader.OpenModLoader;
-import xyz.openmodloader.util.EnumUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.passive.HorseArmorType;
@@ -11,18 +10,21 @@ import net.minecraft.util.ResourceLocation;
 
 public class GameRegistry {
     
+    public static void init() {
+        registerHorseArmor(new ResourceLocation("none"), HorseArmorType.NONE);
+        registerHorseArmor(new ResourceLocation("iron"), HorseArmorType.IRON);
+        registerHorseArmor(new ResourceLocation("gold"), HorseArmorType.GOLD);
+        registerHorseArmor(new ResourceLocation("diamond"), HorseArmorType.DIAMOND);
+    }
+    
     /**
-     * Creates a new HorseArmorType and adds it to the HorseArmorType enum.
+     * Registers a new horse armor
      * 
-     * @param fieldName The name of the field to add in the enum. Should be all
-     *        upper case and unique.
-     * @param protection The protection value for the armor type.
-     * @param texture The texture name to use for the armor type.
-     * @param hash A string to use for creating the hash of the armor type.
-     * @return The newly created horse armor type.
+     * @param identifier
+     * @param horseArmor
      */
-    public static HorseArmorType addHorseArmorType(String fieldName, int protection, String texture, String hash) {
-        return EnumUtils.addEnum(HorseArmorType.class, fieldName, new Class[] { int.class, String.class, String.class }, new Object[] { protection, texture, hash });
+    public static void registerHorseArmor(ResourceLocation identifier, HorseArmorType horseArmor) {
+        OMLRegistry.getRegistry(HorseArmorType.class).register(identifier, horseArmor);
     }
     
     public static void registerBlock(Block block, ResourceLocation identifier) {

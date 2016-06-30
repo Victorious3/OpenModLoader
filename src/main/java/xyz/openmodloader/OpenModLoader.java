@@ -15,6 +15,7 @@ import xyz.openmodloader.modloader.version.Version;
 import xyz.openmodloader.network.Channel;
 import xyz.openmodloader.network.ChannelManager;
 import xyz.openmodloader.network.DataTypes;
+import xyz.openmodloader.registry.GameRegistry;
 
 public final class OpenModLoader {
     private static Version mcversion = new Version("1.10.2");
@@ -45,6 +46,7 @@ public final class OpenModLoader {
                     .with("component", DataTypes.TEXT_COMPONENT)
                     .handle((context, packet) -> getSidedHandler().openSnackbar(packet.get("component", DataTypes.TEXT_COMPONENT)))
                 .build();
+        GameRegistry.init();
     }
 
     /**

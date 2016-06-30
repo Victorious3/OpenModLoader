@@ -41,7 +41,6 @@ import xyz.openmodloader.network.Channel;
 import xyz.openmodloader.network.ChannelManager;
 import xyz.openmodloader.network.DataTypes;
 import xyz.openmodloader.registry.GameRegistry;
-import xyz.openmodloader.util.EnumUtils;
 
 public class OMLTestMod implements Mod {
     private Channel channel;
@@ -119,8 +118,8 @@ public class OMLTestMod implements Mod {
         config.save();
 
         testNetwork();
-
-        testBlock();
+        testBlock();   
+        testHorseArmor();
     }
 
     private void testNetwork() {
@@ -139,8 +138,12 @@ public class OMLTestMod implements Mod {
         GameRegistry.registerBlock(new BlockEmpty(), new ResourceLocation("oml:blank"));
         GameRegistry.registerBlock(new BlockTest(), new ResourceLocation("oml:test"));
 
-        GameRegistry.registerItem(new Item(),new ResourceLocation("oml:blank_item"));
-        GameRegistry.registerItem(new ItemTestHorseArmor(),new ResourceLocation("oml:horse_armor"));
+        GameRegistry.registerItem(new Item(), new ResourceLocation("oml:blank_item"));
+        GameRegistry.registerItem(new ItemTestHorseArmor(), new ResourceLocation("oml:horse_armor"));
+    }
+    
+    private void testHorseArmor() {
+        GameRegistry.registerHorseArmor(new ResourceLocation("oml:test_armor"), ItemTestHorseArmor.TYPE);
     }
 
     public void onChat(MessageEvent.Chat event) {

@@ -10,7 +10,7 @@ import xyz.openmodloader.registry.GameRegistry;
 
 public class ItemTestHorseArmor extends Item implements HorseArmor {
 
-    public static final HorseArmorType TYPE = GameRegistry.addHorseArmorType("OML_TEST_ARMOR", 5, "omltest", "omltest");
+    public static final HorseArmorType TYPE = new HorseArmorType(5, "omltest", "omltest");
     
     public ItemTestHorseArmor () {      
         this.setCreativeTab(CreativeTabs.COMBAT);
